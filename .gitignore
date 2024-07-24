@@ -2,3 +2,138 @@
 
 ~$gma Designs.odt
 ~$EMS_DB Design.xlsx
+
+
+
+# .NET Core
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.app
+*.log
+*.vshost.exe
+*.vshost.exe.manifest
+*.dbmdl
+*.jfm
+.vscode/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono auto generated files
+mono_crash.*
+
+# OS generated files #
+.DS_Store
+Thumbs.db
+
+# Rider
+.idea/
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Local history for Visual Studio
+.vs/
+
+# Windows image file caches
+*.iobj
+*.ipdb
+
+# Application Insights local directory
+ApplicationInsights.config
+
+# Azure Stream Analytics job outputs
+ASALogs/
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Typescript v1 declaration files
+typings/
+
+# Visual Studio 2019
+.vscode/
+
+# Visual Studio 2022
+.vscode/
+
+# Microsoft Azure Web App publish settings
+*.PublishSettings
+
+# npm package directories
+node_modules/
+jspm_packages/
+
+# Coverage results
+coverage/
+
+# DocFX
+_site/
+
+# NuGet
+*.nupkg
+# Uncomment if necessary
+# packages/
+
+# web/drupal specific
+sites/all/libraries/
+sites/all/modules/
+sites/default/files/
+
+# Rider
+.idea/
+# Rider + Resharper
+*.DotSettings.user
+
+# Publish/Web-Generated
+wwwroot/
+node_modules/
+dist/
+
+# .NET Core libraries
+lib/
+
+# ASP.NET Core
+wwwroot/
+
+# Database
+*.mdf
+*.ldf
+*.ndf
+*.sdf
+
+# SQL Server Integration Services
+.dtproj.user
+.dtproj
+*.rptproj.user
+*.rptproj
+*.rds
+
+# SQL Server Analysis Services
+.smproj.user
+.smproj
+*.spg
+
+# SQL Server Reporting Services
+*.rdlc
+
+# EntityFramework
+*.edmx
+*.edmx.diagram
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
