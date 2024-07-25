@@ -1,4 +1,6 @@
 
+using Utilities.ConfigService;
+
 namespace EMS_App
 {
     public class Program
@@ -13,6 +15,8 @@ namespace EMS_App
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IConfigurationService,ConfigurationService>();
 
             var app = builder.Build();
 
