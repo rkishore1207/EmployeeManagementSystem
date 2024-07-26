@@ -8,11 +8,10 @@ namespace DataAccessLayer
 {
     public static class DataAccessRegistration
     {
-        public static IServiceCollection AddDataServices(this IServiceCollection services)
+        public static void AddDataServices(this IServiceCollection services)
         {
             services.AddScoped<IUserRepository<UserEntity,Guid>,UserRepository>();
             services.AddScoped<IHelper,Helper>();
-            return services;
         }
     }
 }

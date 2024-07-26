@@ -26,7 +26,7 @@ namespace Services.Implementations
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim(JwtRegisteredClaimNames.FamilyName,user.UID.ToString()),
+                new Claim(ClaimTypes.NameIdentifier,user.UID.ToString()),
             };
 
             // Creating Signature Algorithm

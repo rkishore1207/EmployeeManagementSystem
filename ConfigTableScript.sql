@@ -26,6 +26,9 @@ SELECT * FROM [config].[Designation]
 -- Insert Admin data for User Table
 SELECT * FROM [data].[User]
 
+-- Making Email as a NonClustered Index Column
+CREATE NONCLUSTERED INDEX NonClusteredIndex_Email ON [data].[User](Email)
+
 INSERT INTO [data].[User]
 VALUES(NEWID(),'3280','Kishore','Ramesh',null,null,null,1,'rkishoreatr1207@gmail.com','Kallakurichi','9789728800','2002-10-15','2023-09-27','Chennai','Full Stack Developer',6,4,3,0,1,0,'Single',21,'Male','O+ve','9578691211','Jayam','CIT','')
 

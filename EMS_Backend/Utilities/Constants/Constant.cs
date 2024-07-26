@@ -6,6 +6,8 @@
         {
             public const string InvalidUser = "User Data is not Sufficient";
             public const string DuplicateUser = "User already Exists";
+            public const string CustomExceptionMessage = "Something went Wrong";
+            public const string UnAuthorizedException = "Access Restriction";
         }
     }
 }

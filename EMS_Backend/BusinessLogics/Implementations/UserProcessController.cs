@@ -7,9 +7,11 @@ using DataAccessLayer.Intefaces;
 using DataAccessLayer.Models;
 using Services.Implementations;
 using System.Data;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using Utilities.Constants;
+using Utilities.Exceptions;
 
 namespace BusinessLogics.Implementations
 {
@@ -32,15 +34,21 @@ namespace BusinessLogics.Implementations
         {
             if (userLogin == null)
                 throw new NullReferenceException(Constant.CustomExceptions.InvalidUser);
+
             var hmac = new HMACSHA512();
             var password = hmac.ComputeHash(Encoding.UTF8.GetBytes(userLogin.Password)) ?? Array.Empty<byte>();
-            Guid userUID = await _helper.GetUserIdByEmail(userLogin.Email);
+            Guid userUID = await _helper.GetUserIdByEmail(userLogin.Email);           
             var userEntity = await _userRepository.GetUser(userUID);
+
+            if (userEntity.PasswordHash == null || userEntity.PasswordHash?.Length <= 0 || password.Length <= 0)
+                throw new CustomException(new Error(Constant.CustomExceptions.UnAuthorizedException), HttpStatusCode.Unauthorized);
+
             for (int i = 0; i < userEntity.PasswordHash?.Length; i++)
             {
                 if (password[i] != userEntity.PasswordHash[i])
-                    throw new UnauthorizedAccessException();
+                    throw new CustomException(new Error(Constant.CustomExceptions.UnAuthorizedException), HttpStatusCode.Unauthorized);
             }
+
             var user = new UserViewModel()
             {
                 UID = userEntity.UID,
@@ -57,10 +65,10 @@ namespace BusinessLogics.Implementations
                 throw new NullReferenceException(Constant.CustomExceptions.InvalidUser);
 
             if (await IsUserExists(userRegister))
-                throw new DuplicateNameException(Constant.CustomExceptions.DuplicateUser);
+                throw new CustomException(Constant.CustomExceptions.DuplicateUser, HttpStatusCode.InternalServerError);
 
             var userEntity = _mapper.Map<UserEntity>(userRegister);
-            await _userRepository.AddUser(userEntity);
+            await _userRepository.AddOrUpdateUser(userEntity);
             var user = new UserViewModel()
             {
                 UID = userEntity.UID,
