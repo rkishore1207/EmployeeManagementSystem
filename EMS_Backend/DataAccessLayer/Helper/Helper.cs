@@ -15,8 +15,8 @@ namespace BusinessLogics.Helper
 
         public async Task<Guid> GetUserIdByEmail(string email)
         {
-            var spEmail = SpParameter.Create("Email", email, ParameterDirection.Input, SqlDbType.NVarChar);
-            var user = await ExecuteStoredProcedureAsync<UserEntity>("", spEmail);
+            var spEmail = SpParameter.Create("UserEmail", email, ParameterDirection.Input, SqlDbType.NVarChar);
+            var user = await ExecuteStoredProcedureAsync<UserEntity>("GetUserByEmail", spEmail);
             return user.First().UID;
         }
     }

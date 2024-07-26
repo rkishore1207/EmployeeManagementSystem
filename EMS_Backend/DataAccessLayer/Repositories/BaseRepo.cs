@@ -32,8 +32,11 @@ namespace DataAccessLayer.Repositories
                             storedProcCommand.Parameters.Add($"{parameter.Name}", parameter.SqlDbType).Value = parameter.Value ?? DBNull.Value;
                         using (var reader = await storedProcCommand.ExecuteReaderAsync(CommandBehavior.CloseConnection))
                         {
-                            var list = MapListReader<T>(reader);
-                            result.AddRange(list);
+                            while(reader.Read())
+                            {
+                                var list = MapListReader<T>(reader);
+                                result.AddRange(list);
+                            }
                         }
                     }
                 }
@@ -102,13 +105,15 @@ namespace DataAccessLayer.Repositories
             var properties = typeof(T).GetProperties();
             var columnList = reader.GetSchemaTable()?.Select().Select(r => r.ItemArray[0]?.ToString()).ToList();
             var element = Activator.CreateInstance<T>();
+            string column;
             if(columnList != null)
             {
                 foreach (var property in properties)
                 {
                     if (!columnList.Contains(property.Name))
                         continue;
-                    var obj = reader[property.Name];
+                    column = property.Name;
+                    var obj = reader[column];
                     
                     if(obj.GetType() != typeof(DBNull))
                         property.SetValue(element, ChangeType(obj,property.PropertyType), null);
@@ -117,7 +122,7 @@ namespace DataAccessLayer.Repositories
             yield return element;
         }
 
-        private static object? ChangeType(object obj, Type? type)
+        private static object ChangeType(object obj, Type type)
         {
             if(type != null && type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
             {
@@ -130,7 +135,7 @@ namespace DataAccessLayer.Repositories
 
         private SqlConnection GetSqlConnection()
         {
-            SqlConnection? connection = null;
+            SqlConnection connection = null;
             try
             {
                 connection = new SqlConnection(_configurationService.SqlConnectionString);
@@ -142,10 +147,6 @@ namespace DataAccessLayer.Repositories
                 connection?.Close();
                 connection?.Dispose();
                 throw new Exception(ex.Message);
-            }
-            finally
-            {
-                connection?.Close();
             }
         }
 

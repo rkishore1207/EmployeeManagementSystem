@@ -7,3 +7,4 @@
 * Microsoft.Extensions.DependencyInjection
 * AutoMapper
 * Microsoft.IdentityModels.Tokens.Jwt
+* Newtonsoft.Json
