@@ -6,6 +6,6 @@ namespace BusinessLogics.Interfaces
     public interface IUserProcessController
     {
         Task<UserViewModel> UserLogin(UserLoginRequest userLogin);
-        Task<UserViewModel> UserRegister(UserRegisterRequest userRegister);
+        Task<Guid> UserRegister(UserRegisterRequest userRegister);
     }
 }

@@ -59,7 +59,7 @@ namespace BusinessLogics.Implementations
             return user;
         }
 
-        public async Task<UserViewModel> UserRegister(UserRegisterRequest userRegister)
+        public async Task<Guid> UserRegister(UserRegisterRequest userRegister)
         {
             if (userRegister == null)
                 throw new NullReferenceException(Constant.CustomExceptions.InvalidUser);
@@ -68,15 +68,12 @@ namespace BusinessLogics.Implementations
                 throw new CustomException(Constant.CustomExceptions.DuplicateUser, HttpStatusCode.InternalServerError);
 
             var userEntity = _mapper.Map<UserEntity>(userRegister);
-            await _userRepository.AddOrUpdateUser(userEntity);
-            var user = new UserViewModel()
-            {
-                UID = userEntity.UID,
-                Email = userEntity.Email,
-                Role = userEntity.UserRole
-            };
-            user.Token = _tokenService.GenerateToken(user);
-            return user;
+            var hmac = new HMACSHA512();
+            userEntity.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userRegister.Password));
+            userEntity.HashKey = hmac.Key;
+
+            var userGuid = await _userRepository.AddOrUpdateUser(userEntity);
+            return userGuid;
         }
 
         private async Task<bool> IsUserExists(UserRegisterRequest userRegister)

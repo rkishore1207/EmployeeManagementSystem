@@ -4,7 +4,7 @@
     {
         Task<T> GetUser(K userUID);
         Task<List<T>> GetUsers();
-        Task AddOrUpdateUser(T user);
+        Task<Guid> AddOrUpdateUser(T user);
         Task DeleteUser(K userUID);
     }
 }
