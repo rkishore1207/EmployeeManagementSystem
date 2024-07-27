@@ -13,7 +13,7 @@ namespace DataAccessLayer.Repositories
             _configurationService = configurationService;
         }
 
-        public async Task AddOrUpdateUser(UserEntity user)
+        public async Task<Guid> AddOrUpdateUser(UserEntity user)
         {
             Guid UserUID = Guid.NewGuid();
             List<SpParameter> spParameters = new List<SpParameter>()
@@ -52,6 +52,7 @@ namespace DataAccessLayer.Repositories
                 SpParameter.Create("HashKey", user.HashKey, ParameterDirection.Input, SqlDbType.Binary)
             };
             await ExecuteStoredProcedureNonQueryAsync("AddOrUpdateUser", spParameters.ToArray());
+            return UserUID;
         }
 
         public Task DeleteUser(Guid userUID)
