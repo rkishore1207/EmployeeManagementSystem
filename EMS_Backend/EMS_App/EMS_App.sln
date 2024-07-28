@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogics", "..\Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "..\DataAccessLayer\DataAccessLayer.csproj", "{EDCFBB51-120C-4C20-83BA-AA7CD8B2303C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "..\Utilities\Utilities.csproj", "{A4A5D5C7-D0EE-4B19-B879-E14461627EAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "..\Utilities\Utilities.csproj", "{A4A5D5C7-D0EE-4B19-B879-E14461627EAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "..\Services\Services.csproj", "{65D4FF08-0E21-4B41-850E-7D45DF4605A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "..\Services\Services.csproj", "{65D4FF08-0E21-4B41-850E-7D45DF4605A3}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Ems.Database.Project", "..\Ems.Database.Project\Ems.Database.Project.sqlproj", "{330B10BB-617E-4CDF-A826-BF47B118423B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,12 @@ Global
 		{65D4FF08-0E21-4B41-850E-7D45DF4605A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65D4FF08-0E21-4B41-850E-7D45DF4605A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65D4FF08-0E21-4B41-850E-7D45DF4605A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330B10BB-617E-4CDF-A826-BF47B118423B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330B10BB-617E-4CDF-A826-BF47B118423B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330B10BB-617E-4CDF-A826-BF47B118423B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{330B10BB-617E-4CDF-A826-BF47B118423B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330B10BB-617E-4CDF-A826-BF47B118423B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330B10BB-617E-4CDF-A826-BF47B118423B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
