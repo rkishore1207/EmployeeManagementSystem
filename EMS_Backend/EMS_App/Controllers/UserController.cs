@@ -1,11 +1,13 @@
 ﻿using BusinessLogics.Interfaces;
 using BusinessLogics.Models.RequestModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS_App.Controllers
 {
     [Route("api/user")]
     [ApiController]
+    [EnableCors("ReactCORS")]
     public class UserController : ControllerBase
     {
         private readonly IUserProcessController _userProcessController;

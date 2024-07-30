@@ -14,6 +14,7 @@ namespace BusinessLogics
             services.AddScoped<ITokenService, TokenService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IEmailProcessController, EmailProcessController>();
+            services.AddScoped<IAdminProcessController, AdminProcessController>();
             return services;
         }
     }

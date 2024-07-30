@@ -8,6 +8,7 @@
             public const string DuplicateUser = "User already Exists";
             public const string CustomExceptionMessage = "Something went Wrong";
             public const string UnAuthorizedException = "Access Restriction";
+            public const string Forbidden = "Forbidden";
         }
 
         public static class Email

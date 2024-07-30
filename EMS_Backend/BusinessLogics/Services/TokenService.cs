@@ -24,7 +24,7 @@ namespace Services.Implementations
                 throw new NullReferenceException(Constant.CustomExceptions.InvalidUser);
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role),
                 new Claim(ClaimTypes.NameIdentifier,user.UID.ToString()),
             };
