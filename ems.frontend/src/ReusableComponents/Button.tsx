@@ -9,6 +9,16 @@ const variation : any = {
         color: var(--color-white-50);
         &:hover{
             background-color: var(--color-blue-30);
+            color: var(--color-white-40);
+        }
+    `,
+
+    buttonDisable: css`
+        background-color:var(--color-grey-0);
+        cursor: not-allowed;
+        color:var(--color-white-50);
+        &:hover{
+            background-color: var(--color-grey-0);
         }
     `
 }
@@ -27,6 +37,10 @@ const Button = styled.button<ButtonProps>`
 
     ${
         props => props.variation === Constant.StyledComponentTypes.Primary && variation[props.variation]
+    }
+
+    ${
+        props => props.variation === Constant.StyledComponentTypes.buttonDisable && variation[props.variation]
     }
 `;
 

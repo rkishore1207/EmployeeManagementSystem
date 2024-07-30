@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AzureServices\AzureServices.csproj" />
     <ProjectReference Include="..\BusinessLogics\BusinessLogics.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>

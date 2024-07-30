@@ -9,23 +9,21 @@ interface RowProps{
 const Row = styled.div<RowProps>`
     width: 100%;
     display: flex;
-    align-items: center;
 
     ${
-        props => props.type === Constant.StyledComponentTypes.Vertical && css`
+        props => props.type === Constant.StyledComponentTypes.Horizontal && css`
             justify-content: center;
         `
     }
     ${
-        props => props.type === Constant.StyledComponentTypes.Horizontal && css`
+        props => props.type === Constant.StyledComponentTypes.Vertical && css`
             flex-direction: column;
-            justify-content: center;
         `
     }
 `;
 
 Row.defaultProps = {
-    type : Constant.StyledComponentTypes.Vertical
+    type : Constant.StyledComponentTypes.Horizontal
 }
 
 export default Row;
