@@ -1,8 +1,8 @@
 
+using AzureServices;
 using BusinessLogics;
 using DataAccessLayer;
 using EMS_App.Middlewares;
-using Microsoft.Identity.Client;
 using Utilities.ConfigService;
 
 namespace EMS_App
@@ -16,8 +16,7 @@ namespace EMS_App
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<IConfigurationService, ConfigurationService>();
-            builder.Services.AddBusinessServices();
-            builder.Services.AddDataServices();
+            builder.Services.AddBusinessServices().AddDataServices().AddAzureServices();
 
             var app = builder.Build();
 

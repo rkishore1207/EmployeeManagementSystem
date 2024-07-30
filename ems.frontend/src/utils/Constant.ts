@@ -4,7 +4,8 @@ const Constant = {
         Horizontal:"horizontal",
         Primary:"primary",
         Success:"success",
-        Danger:"danger"
+        Danger:"danger",
+        buttonDisable:"buttonDisable"
     }
 }
 

@@ -9,5 +9,10 @@
             public const string CustomExceptionMessage = "Something went Wrong";
             public const string UnAuthorizedException = "Access Restriction";
         }
+
+        public static class Email
+        {
+            public const string EmailSubject = "Reset Password";
+        }
     }
 }

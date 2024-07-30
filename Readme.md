@@ -1,6 +1,7 @@
 # Employee Management System
 
 ## Packages
+### Backend
 * Microsoft.Data.SqlClient
 * Microsoft.Extensions.Configuration
 * Microsoft.Extensions.Configuration.Binder
@@ -8,3 +9,7 @@
 * AutoMapper
 * Microsoft.IdentityModels.Tokens.Jwt
 * Newtonsoft.Json
+
+### Frontend
+* react-router-dom
+* react-icons
