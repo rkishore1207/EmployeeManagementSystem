@@ -1,8 +1,10 @@
 ﻿
+using DataAccessLayer.Models;
+
 namespace BusinessLogics.Helper
 {
     public interface IHelper
     {
-        Task<Guid> GetUserIdByEmail(string email);
+        Task<UserEntity> GetUserIdByEmail(string email);
     }
 }

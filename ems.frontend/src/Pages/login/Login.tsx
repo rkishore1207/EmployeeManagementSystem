@@ -10,6 +10,7 @@ import { IconContext } from 'react-icons';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import ValidationText from '../../ReusableComponents/ValidationText';
 import Constant from '../../utils/Constant';
+import adminService from '../../services/adminService';
 
 const Login = () => {
 
@@ -26,10 +27,6 @@ const Login = () => {
         if(userEmailRef.current)
             userEmailRef.current.focus();
     },[]);
-
-    const handleLogin = () => {
-        console.log("Login");
-    }
 
     const handleKeyDown = (event:any) => {
         if(event.key == "Enter")
@@ -61,6 +58,14 @@ const Login = () => {
             setPasswordError('');
     }
 
+    const handleLogin = async () => {
+        await adminService.login(user).then((response)=>{
+            console.log(response);
+            const userDetail = JSON.stringify(response);
+            sessionStorage.setItem("user",userDetail);
+        }).catch((error)=>console.log(error));
+    }
+
 
     return (
         <Row type='vertical' className={styles.loginBackground}>
@@ -74,7 +79,7 @@ const Login = () => {
                     ref={userEmailRef}
                     className={styles.loginInputField}
                     name="email"
-                    maxLength={20}
+                    maxLength={50}
                     placeholder='Enter your Email' 
                     value={user.email} 
                     onChange={(event)=>handleEmailValidation(event.target.value)}
@@ -104,7 +109,7 @@ const Login = () => {
             <Row>
                 {
                     emailError === '' && passwordError === '' && user.email !== '' && user.password !== '' ?
-                    <Button variation={Constant.StyledComponentTypes.Primary}>Login</Button> :
+                    <Button variation={Constant.StyledComponentTypes.Primary} onClick={handleLogin}>Login</Button> :
                     <Button variation={Constant.StyledComponentTypes.buttonDisable}>Login</Button>
                 }
             </Row>

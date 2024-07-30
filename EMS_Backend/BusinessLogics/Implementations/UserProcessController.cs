@@ -34,11 +34,12 @@ namespace BusinessLogics.Implementations
         {
             if (userLogin == null)
                 throw new NullReferenceException(Constant.CustomExceptions.InvalidUser);
+            
+            var userDetail = await _helper.GetUserIdByEmail(userLogin.Email);           
+            var userEntity = await _userRepository.GetUser(userDetail.UID);
 
-            var hmac = new HMACSHA512();
+            var hmac = new HMACSHA512(userEntity.HashKey);
             var password = hmac.ComputeHash(Encoding.UTF8.GetBytes(userLogin.Password)) ?? Array.Empty<byte>();
-            Guid userUID = await _helper.GetUserIdByEmail(userLogin.Email);           
-            var userEntity = await _userRepository.GetUser(userUID);
 
             if (userEntity.PasswordHash == null || userEntity.PasswordHash?.Length <= 0 || password.Length <= 0)
                 throw new CustomException(new Error(Constant.CustomExceptions.UnAuthorizedException), HttpStatusCode.Unauthorized);

@@ -3,6 +3,9 @@ using AzureServices;
 using BusinessLogics;
 using DataAccessLayer;
 using EMS_App.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using Utilities.ConfigService;
 
 namespace EMS_App
@@ -18,6 +21,26 @@ namespace EMS_App
             builder.Services.AddSingleton<IConfigurationService, ConfigurationService>();
             builder.Services.AddBusinessServices().AddDataServices().AddAzureServices();
 
+            builder.Services.AddCors(opts =>
+            {
+                opts.AddPolicy("ReactCORS", options =>
+                {
+                    options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+               .AddJwtBearer(options =>
+               {
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuerSigningKey = true,
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"])),
+                       ValidateIssuer = false,
+                       ValidateAudience = false
+                   };
+               });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -28,7 +51,8 @@ namespace EMS_App
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseMiddleware<ErrorHandlingMiddleware>();
 

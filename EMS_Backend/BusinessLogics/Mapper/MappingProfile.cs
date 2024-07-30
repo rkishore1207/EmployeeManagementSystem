@@ -11,6 +11,7 @@ namespace BusinessLogics.Mapper
         {
             CreateMap<UserRegisterRequest, UserEntity>().ReverseMap();
             CreateMap<EmailDetails, EmailEntity>().ReverseMap();
+            CreateMap<UserEntity, Employees>().ReverseMap();
         }
     }
 }

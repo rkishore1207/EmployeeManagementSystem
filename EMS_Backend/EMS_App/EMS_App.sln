@@ -15,9 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "..\Services\Ser
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Ems.Database.Project", "..\Ems.Database.Project\Ems.Database.Project.sqlproj", "{330B10BB-617E-4CDF-A826-BF47B118423B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ems.Functions", "..\ems.Functions\ems.Functions.csproj", "{8FCBAF6D-A3A3-4941-98E4-0CF632AC9966}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServices", "..\AzureServices\AzureServices.csproj", "{0182D461-37E1-4C3D-AAA5-103916113FE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureServices", "..\AzureServices\AzureServices.csproj", "{0182D461-37E1-4C3D-AAA5-103916113FE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +49,6 @@ Global
 		{330B10BB-617E-4CDF-A826-BF47B118423B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{330B10BB-617E-4CDF-A826-BF47B118423B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{330B10BB-617E-4CDF-A826-BF47B118423B}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{8FCBAF6D-A3A3-4941-98E4-0CF632AC9966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FCBAF6D-A3A3-4941-98E4-0CF632AC9966}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FCBAF6D-A3A3-4941-98E4-0CF632AC9966}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FCBAF6D-A3A3-4941-98E4-0CF632AC9966}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0182D461-37E1-4C3D-AAA5-103916113FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0182D461-37E1-4C3D-AAA5-103916113FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0182D461-37E1-4C3D-AAA5-103916113FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU

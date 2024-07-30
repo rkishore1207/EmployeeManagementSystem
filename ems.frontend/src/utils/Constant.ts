@@ -6,6 +6,14 @@ const Constant = {
         Success:"success",
         Danger:"danger",
         buttonDisable:"buttonDisable"
+    },
+    apiUrls:{
+        BASR_URL:"https://localhost:7098/api",
+        login:"/user/userLogin",
+        register:"/user/userRegister",
+        admin:{
+            GetEmployees:"",
+        }
     }
 }
 

@@ -13,3 +13,5 @@
 ### Frontend
 * react-router-dom
 * react-icons
+* axios
+* sonner (toaster)
