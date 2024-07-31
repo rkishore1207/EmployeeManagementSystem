@@ -32,22 +32,22 @@ namespace BusinessLogics.Implementations
 
         public async Task<UserViewModel> UserLogin(UserLoginRequest userLogin)
         {
-            if (userLogin == null)
+            if (userLogin is null)
                 throw new NullReferenceException(Constant.CustomExceptions.InvalidUser);
             
-            var userDetail = await _helper.GetUserIdByEmail(userLogin.Email);           
+            var userDetail = await _helper.GetUserIdByEmail(userLogin.Email) ?? throw new CustomException(new Error(Constant.CustomExceptions.InValidEmail,1004), HttpStatusCode.NotFound);
+            
             var userEntity = await _userRepository.GetUser(userDetail.UID);
+            if (userEntity.PasswordHash is null || userEntity.PasswordHash?.Length <= 0 || userLogin.Password.Length <= 0)
+                throw new CustomException(new Error(Constant.CustomExceptions.UnAuthorizedException), HttpStatusCode.Unauthorized);
 
             var hmac = new HMACSHA512(userEntity.HashKey);
             var password = hmac.ComputeHash(Encoding.UTF8.GetBytes(userLogin.Password)) ?? Array.Empty<byte>();
-
-            if (userEntity.PasswordHash == null || userEntity.PasswordHash?.Length <= 0 || password.Length <= 0)
-                throw new CustomException(new Error(Constant.CustomExceptions.UnAuthorizedException), HttpStatusCode.Unauthorized);
-
+            
             for (int i = 0; i < userEntity.PasswordHash?.Length; i++)
             {
                 if (password[i] != userEntity.PasswordHash[i])
-                    throw new CustomException(new Error(Constant.CustomExceptions.UnAuthorizedException), HttpStatusCode.Unauthorized);
+                    throw new CustomException(new Error(Constant.CustomExceptions.InCorrectPassword,1002), HttpStatusCode.Unauthorized);
             }
 
             var user = new UserViewModel()
@@ -66,7 +66,7 @@ namespace BusinessLogics.Implementations
                 throw new NullReferenceException(Constant.CustomExceptions.InvalidUser);
 
             if (await IsUserExists(userRegister))
-                throw new CustomException(Constant.CustomExceptions.DuplicateUser, HttpStatusCode.InternalServerError);
+                throw new CustomException(new Error(Constant.CustomExceptions.DuplicateUser,1001), HttpStatusCode.InternalServerError);
 
             var userEntity = _mapper.Map<UserEntity>(userRegister);
             var hmac = new HMACSHA512();
@@ -81,7 +81,7 @@ namespace BusinessLogics.Implementations
         {
             var users = await _userRepository.GetUsers();
             var existingUser = users.Where(emp => emp.Email == userRegister.Email).FirstOrDefault();
-            if (existingUser != null)
+            if (existingUser is not null)
                 return true;
             return false;
         }

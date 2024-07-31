@@ -1,4 +1,6 @@
-﻿namespace BusinessLogics.Models.ViewModels
+﻿using DataAccessLayer.Models;
+
+namespace BusinessLogics.Models.ViewModels
 {
     public class Employees
     {
