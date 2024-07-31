@@ -25,6 +25,6 @@ namespace Utilities.Exceptions
             ErrorResponse.Message = message;
         }
 
-        public override string Message =>   ErrorResponse.Message != string.Empty ? $"Exception => {ErrorResponse.Message}, StatusCode => {StatusCode} {(ErrorResponse.Property != string.Empty ? ErrorResponse.Property : "")}" : base.Message;
+        public override string Message =>   ErrorResponse.Message != string.Empty ? $"Exception => {ErrorResponse.Message}, StatusCode => {StatusCode} " : base.Message;
     }
 }

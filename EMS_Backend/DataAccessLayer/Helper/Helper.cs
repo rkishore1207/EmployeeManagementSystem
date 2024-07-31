@@ -17,7 +17,7 @@ namespace BusinessLogics.Helper
         {
             var spEmail = SpParameter.Create("UserEmail", email, ParameterDirection.Input, SqlDbType.NVarChar);
             var user = await ExecuteStoredProcedureAsync<UserEntity>("GetUserByEmail", spEmail);
-            return user.First();
+            return user.FirstOrDefault();
         }
     }
 }

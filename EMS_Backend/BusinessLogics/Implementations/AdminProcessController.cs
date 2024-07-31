@@ -3,6 +3,9 @@ using BusinessLogics.Interfaces;
 using BusinessLogics.Models.ViewModels;
 using DataAccessLayer.Intefaces;
 using DataAccessLayer.Models;
+using System.Net;
+using Utilities.Constants;
+using Utilities.Exceptions;
 
 namespace BusinessLogics.Implementations
 {
@@ -22,6 +25,8 @@ namespace BusinessLogics.Implementations
         public async Task<List<Employees>> GetUnApprovedEmployees()
         {
             var employees = await _userRepository.GetUsers();
+            if (!employees.Any())
+                throw new CustomException(new Error(Constant.CustomExceptions.NoUsersWereRegistered,1003),HttpStatusCode.NotFound);
             var unApprovedUsers = employees.Where(employee => !employee.IsActive).ToList();
             var employeesView = _mapper.Map<List<Employees>>(unApprovedUsers);
             return employeesView;

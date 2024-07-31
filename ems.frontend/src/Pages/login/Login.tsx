@@ -11,6 +11,9 @@ import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import ValidationText from '../../ReusableComponents/ValidationText';
 import Constant from '../../utils/Constant';
 import adminService from '../../services/adminService';
+import { AxiosError } from 'axios';
+import { CustomException } from '../../utils/enums';
+import { toast } from 'sonner';
 
 const Login = () => {
 
@@ -59,11 +62,22 @@ const Login = () => {
     }
 
     const handleLogin = async () => {
+        if(emailError === '' || passwordError === '' || user.email !== '' || user.password !== '')
+            return null;
         await adminService.login(user).then((response)=>{
             console.log(response);
             const userDetail = JSON.stringify(response);
             sessionStorage.setItem("user",userDetail);
-        }).catch((error)=>console.log(error));
+        }).catch((error:AxiosError)=>{
+            console.log(error);
+            const data : any = error.response?.data;
+            if(data.Code === CustomException.IncorrectPassword)
+                setPasswordError(data.Message);
+            else if(data.Code === CustomException.InValidEmail)
+                setEmailError(data.Message);
+            else
+                toast.error(data.Message);
+        });
     }
 
 

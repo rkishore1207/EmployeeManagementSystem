@@ -7,6 +7,8 @@ export interface UserRegister{
     firstName:string,
     lastName:string,
     employeeID:string,
+    password:string,
+    confirmPassword:string,
     address:string,
     phoneNumber:string,
     email:string,
