@@ -9,9 +9,12 @@
 * AutoMapper
 * Microsoft.IdentityModels.Tokens.Jwt
 * Newtonsoft.Json
+* Azure.Storage.Blobs
+* Microsoft.AspNetCore.Http
 
 ### Frontend
 * react-router-dom
 * react-icons
 * axios
 * sonner (toaster)
+* react-dropzone
