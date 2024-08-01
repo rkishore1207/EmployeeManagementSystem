@@ -19,6 +19,11 @@ class adminService{
         const response = await axios.post(`${Constant.apiUrls.BASE_URL}${Constant.apiUrls.register}`,registerRequest);
         return response.data;
     }
+
+    async uploadImage(formData:FormData){
+        const response = await axios.post(`${Constant.apiUrls.BASE_URL}${Constant.apiUrls.uploadImage}`,formData);
+        return response.data;
+    }
 }
 
 export default new adminService();

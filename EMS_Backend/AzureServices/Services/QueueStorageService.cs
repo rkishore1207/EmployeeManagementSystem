@@ -12,7 +12,7 @@ namespace AzureServices.Services
         public QueueStorageService(IConfiguration configuration)
         {
             _queueName = configuration.GetValue<string>("AzureCredentials:QueueName");
-            _StorageConnectionString = configuration.GetValue<string>("StorageAccount");
+            _StorageConnectionString = configuration.GetValue<string>("StorageAccountConnection");
         }
 
         public async Task SendMessageToQueue<T>(T message)

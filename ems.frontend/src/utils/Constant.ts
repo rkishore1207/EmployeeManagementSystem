@@ -11,6 +11,7 @@ const Constant = {
         BASE_URL:"https://localhost:7098/api",
         login:"/user/userLogin",
         register:"/user/userRegister",
+        uploadImage:"/user/uploadImage",
         admin:{
             GetEmployees:"",
         }

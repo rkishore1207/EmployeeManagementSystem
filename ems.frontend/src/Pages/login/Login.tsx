@@ -64,12 +64,11 @@ const Login = () => {
     const handleLogin = async () => {
         if(emailError === '' || passwordError === '' || user.email !== '' || user.password !== '')
             return null;
+        
         await adminService.login(user).then((response)=>{
-            console.log(response);
             const userDetail = JSON.stringify(response);
             sessionStorage.setItem("user",userDetail);
         }).catch((error:AxiosError)=>{
-            console.log(error);
             const data : any = error.response?.data;
             if(data.Code === CustomException.IncorrectPassword)
                 setPasswordError(data.Message);

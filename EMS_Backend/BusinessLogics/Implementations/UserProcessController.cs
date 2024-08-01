@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using AzureServices.Interfaces;
 using BusinessLogics.Helper;
 using BusinessLogics.Interfaces;
 using BusinessLogics.Models.RequestModels;
 using BusinessLogics.Models.ViewModels;
 using DataAccessLayer.Intefaces;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Http;
 using Services.Implementations;
 using System.Data;
 using System.Net;
@@ -20,13 +22,15 @@ namespace BusinessLogics.Implementations
         private readonly IUserRepository<UserEntity, Guid> _userRepository;
         private readonly ITokenService _tokenService;
         private readonly IHelper _helper;
+        private readonly IBlobStorageService _blobStorageService;
         private readonly IMapper _mapper;
 
-        public UserProcessController(IUserRepository<UserEntity, Guid> userRepository, ITokenService tokenService, IHelper helper, IMapper mapper)
+        public UserProcessController(IUserRepository<UserEntity, Guid> userRepository, ITokenService tokenService, IHelper helper, IBlobStorageService blobStorageService, IMapper mapper)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
             _helper = helper;
+            _blobStorageService = blobStorageService;
             _mapper = mapper;
         }
 
@@ -84,6 +88,12 @@ namespace BusinessLogics.Implementations
             if (existingUser is not null)
                 return true;
             return false;
+        }
+
+        public async Task UploadAsync(IFormFile formFile)
+        {
+            Guid fileName = Guid.NewGuid();
+            await _blobStorageService.UploadAsync(fileName.ToString(), formFile);
         }
     }
 }

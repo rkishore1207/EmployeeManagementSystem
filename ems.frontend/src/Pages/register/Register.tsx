@@ -1,10 +1,14 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useCallback, useState } from "react";
 import RegisterInput from "../../ReusableComponents/RegisterInput";
 import Row from "../../ReusableComponents/Row";
 import { UserRegister } from "../../models/user/User";
 import Button from "../../ReusableComponents/Button";
 import adminService from "../../services/adminService";
 import { toast } from "sonner";
+import { useDropzone } from "react-dropzone";
+import styles from "./Register.module.css";
+import ValidationText from "../../ReusableComponents/ValidationText";
 
 const Register = () => {
 
@@ -29,6 +33,9 @@ const Register = () => {
         college:'',
         previouCompany:''
     });
+    const [imageError,setImageError] = useState<string>('');
+    const [imageURL,setImageURL] = useState<any>(null);
+    const [image,setImage] = useState<any>(null);
 
     const handleFirstName = (name:string) => {
         setUser({...user,firstName:name});
@@ -86,16 +93,57 @@ const Register = () => {
         setUser({...user,emergencyNumber:contactNumber});
     }
 
-    const handleRegister = async () => {
-        await adminService.register(user).then( (response) =>{
+    const handleRegister = async () => {        
+        await adminService.register(user).then( async (response) =>{
             console.log(response);
-            toast.success("Registered Successfully");
+            const formData = new FormData();
+            formData.append("image",image);
+            await adminService.uploadImage(formData).then(()=>toast.success("Registered Successfully")).catch((error)=>console.log(error));
         }).catch((error)=>console.log(error));
     }
+
+    const maxSize = 1 * 1024 * 1024;
+    const onDrop = useCallback((acceptedFiles : any,fileRejections:any)=>{
+        console.log(fileRejections);
+        console.log(acceptedFiles);
+        if(fileRejections.length > 0){
+            setImageURL(null);
+            fileRejections.forEach((rejection:any)=>{
+                rejection.errors.some((e:any) => {
+                    if(e.code === "file-too-large")
+                        setImageError("File limit Exceeds");
+                    else if(e.code === "file-invalid-type")
+                        setImageError(e.message);
+                });
+            });
+        }
+        else if(acceptedFiles.length > 0 && fileRejections.length <= 0){
+            setImageError('');
+            const imagePreview = Object.assign(acceptedFiles[0], {preview:URL.createObjectURL(acceptedFiles[0])});
+            setImageURL(imagePreview);
+            setImage(acceptedFiles[0]);
+        }
+    },[]);
+
+    const {getRootProps,getInputProps} = useDropzone({
+        onDrop,
+        accept:{"image":['.jpeg','.png','.jpg']},
+        maxSize
+    });
 
 
     return (
         <div>
+            <Row {...getRootProps()} className={styles.uploadBox}>
+                <input {...getInputProps()}/>
+                <p>Drag 'n' Drop some file here, or click to select</p>
+            </Row>
+            {
+                imageURL !== null && <Row>
+                <img src={imageURL.preview} width={50} height={50}/>
+            </Row>
+            }            
+            <ValidationText>{imageError}</ValidationText>
             <Row>
                 <label htmlFor="FirstName">First Name</label>
                 <RegisterInput type="text" 
