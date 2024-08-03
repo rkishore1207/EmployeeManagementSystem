@@ -12,7 +12,6 @@ namespace DataAccessLayer
         {
             services.AddScoped<IUserRepository<UserEntity,Guid>,UserRepository>();
             services.AddScoped<IHelper,Helper>();
-            services.AddScoped<IEmailRepository, EmailRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
             return services;
         }

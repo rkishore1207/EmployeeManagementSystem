@@ -10,8 +10,9 @@ namespace BusinessLogics.Mapper
         public MappingProfile()
         {
             CreateMap<UserRegisterRequest, UserEntity>().ReverseMap();
-            CreateMap<EmailDetails, EmailEntity>().ReverseMap();
             CreateMap<UserEntity, Employees>().ReverseMap();
+            CreateMap<ConfigEntity, ConfigView>().ReverseMap();
+            CreateMap<PayslipRequest, PayslipEntity>().ReverseMap();
         }
     }
 }
