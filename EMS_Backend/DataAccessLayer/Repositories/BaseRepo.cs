@@ -20,7 +20,7 @@ namespace DataAccessLayer.Repositories
             return await RetryLoginFailed(async () =>
             {
                 List<T> result = new List<T>();
-                using (var connection = GetSqlConnection())
+                using (var connection = await GetSqlConnection())
                 {
                     using (var storedProcCommand = connection.CreateCommand())
                     {
@@ -48,7 +48,7 @@ namespace DataAccessLayer.Repositories
         {
             return await RetryLoginFailed(async () =>
             {
-                using(var connection = GetSqlConnection())
+                using(var connection = await GetSqlConnection())
                 {
                     using(var  storedProcCommand = connection.CreateCommand())
                     {
@@ -69,7 +69,7 @@ namespace DataAccessLayer.Repositories
         {
             await RetryLoginFailed(async () =>
             {
-                using (var connection = GetSqlConnection())
+                using (var connection = await GetSqlConnection())
                 {
                     using (var storedProcCommand = connection.CreateCommand())
                     {
@@ -133,13 +133,13 @@ namespace DataAccessLayer.Repositories
             return Convert.ChangeType(obj, type);
         }
 
-        private SqlConnection GetSqlConnection()
+        private async Task<SqlConnection> GetSqlConnection()
         {
             SqlConnection connection = null;
             try
             {
                 connection = new SqlConnection(_configurationService.SqlConnectionString);
-                connection.Open();
+                await connection.OpenAsync();
                 return connection;
             }
             catch (Exception ex)
@@ -170,6 +170,19 @@ namespace DataAccessLayer.Repositories
             catch(Exception)
             {
                 throw;
+            }
+        }
+
+        public async Task BulkInsert(string tableName, DataTable dataTable)
+        {
+            using (SqlConnection connection = await GetSqlConnection())
+            {
+                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+                {
+                    bulkCopy.BulkCopyTimeout = 0;
+                    bulkCopy.DestinationTableName = tableName;
+                    bulkCopy.WriteToServer(dataTable);
+                }
             }
         }
     }
