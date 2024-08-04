@@ -18,3 +18,18 @@
 * axios
 * sonner (toaster)
 * react-dropzone
+
+
+## WorkBook Open XML
+![OpenXML](https://github.com/user-attachments/assets/09c98e8a-2dde-4fb4-aa14-c124d41beff6)
+
+> While disposing object we need to call `Garbage Collector` and execute **SupressFinalize** with the current **object**.
+
+``` C#
+    //Regular way
+    if(document is not null)
+        document.Dispose();
+
+    //Null Propagation way
+    document?.Dispose();
+```

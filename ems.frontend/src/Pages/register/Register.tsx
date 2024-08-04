@@ -93,12 +93,12 @@ const Register = () => {
         setUser({...user,emergencyNumber:contactNumber});
     }
 
-    const handleRegister = async () => {        
-        await adminService.register(user).then( async (response) =>{
+    const handleRegister = async () => {
+        const formData = new FormData();
+        formData.append("image",image);
+        await adminService.uploadImage(formData).then( async (response) =>{
             console.log(response);
-            const formData = new FormData();
-            formData.append("image",image);
-            await adminService.uploadImage(formData).then(()=>toast.success("Registered Successfully")).catch((error)=>console.log(error));
+            await adminService.register(user).then(()=>toast.success("Registered Successfully")).catch((error)=>console.log(error));
         }).catch((error)=>console.log(error));
     }
 
