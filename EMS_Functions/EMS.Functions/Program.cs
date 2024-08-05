@@ -1,3 +1,4 @@
+using AzureServices;
 using EMS.BusinessLogics;
 using EMS.DataAccessLayer;
 using EMS.Utilities.ConfigService;
@@ -12,7 +13,7 @@ var host = new HostBuilder()
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
         services.AddScoped<IConfigurationService, ConfigurationService>();
-        services.AddBusinessServices().AddDataServices();
+        services.AddBusinessServices().AddDataServices().AddAzureServices();
     })
     .Build();
 

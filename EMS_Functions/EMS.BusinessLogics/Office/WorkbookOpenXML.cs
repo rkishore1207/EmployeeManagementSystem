@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using EMS.Utilities;
 
 namespace EMS.BusinessLogics.Office
 {
@@ -10,6 +11,8 @@ namespace EMS.BusinessLogics.Office
         WorkbookPart workbookPart;
         WorkbookStylesPart workbookStyles;
         WorksheetPart worksheetPart;
+        Dictionary<int,Row> rowDictionary = new Dictionary<int,Row>();
+        OpenXmlWriter openXmlWriter;
 
         public WorkbookOpenXML(string fileName)
         {
@@ -56,6 +59,63 @@ namespace EMS.BusinessLogics.Office
             }
             return columns;
         }          
+
+        public void CreateRow(int rowIndex, double rowHeight = 0)
+        {
+            if (!rowDictionary.ContainsKey(rowIndex))
+            {
+                Row row = new Row();
+                row.RowIndex = (uint)rowIndex;
+                if(rowHeight != 0)
+                {
+                    row.Height = rowHeight;
+                    row.CustomHeight = true;
+                }
+                rowDictionary.Add(rowIndex, row);
+                Worksheet workSheet = worksheetPart.Worksheet;
+                SheetData sheetData = workSheet.Elements<SheetData>().First();
+                sheetData.Append(row);
+            }
+        }
+
+        public void CreateCell(int rowIndex, int colIndex, string value, uint formatId = 1)
+        {
+            if (rowDictionary.ContainsKey(rowIndex))
+            {
+                Cell cell = new Cell()
+                {
+                    DataType = CellValues.String,
+                    CellValue = new CellValue(Utils.ReplaceSpecialCharacter(value)),
+                    StyleIndex = formatId
+                };
+                rowDictionary[rowIndex].Append(cell);
+            }
+        }
+
+        public void WriteAndClose()
+        {
+            // write and close for WorksheetPart
+            openXmlWriter = OpenXmlWriter.Create(worksheetPart);
+            var ws = worksheetPart.Worksheet;
+            var sheetData = ws.Elements<SheetData>().First();
+            openXmlWriter.WriteStartElement(ws);
+            openXmlWriter.WriteStartElement(sheetData);
+            openXmlWriter.WriteEndElement();//for sheetData
+            openXmlWriter.WriteEndElement();//for worksheet
+            openXmlWriter.Close();
+
+            //write and close for WorkbookPart
+            openXmlWriter = OpenXmlWriter.Create(workbookPart);
+            var wb = workbookPart.Workbook;
+            openXmlWriter.WriteStartElement(wb);
+            openXmlWriter.WriteEndElement();//for workbook
+            openXmlWriter.Close();
+        }
+
+        public void Close()
+        {
+            document?.Dispose();
+        }
 
         public void Dispose()
         {

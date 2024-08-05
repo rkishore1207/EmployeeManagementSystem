@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.41" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AzureServices\AzureServices.csproj" />
     <ProjectReference Include="..\EMS.DataAccessLayer\EMS.DataAccessLayer.csproj" />
     <ProjectReference Include="..\EMS.Utilities\EMS.Utilities.csproj" />
   </ItemGroup>
