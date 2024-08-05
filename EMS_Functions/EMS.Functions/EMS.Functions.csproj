@@ -18,6 +18,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AzureServices\AzureServices.csproj" />
     <ProjectReference Include="..\EMS.BusinessLogics\EMS.BusinessLogics.csproj" />
     <ProjectReference Include="..\EMS.Utilities\EMS.Utilities.csproj" />
   </ItemGroup>

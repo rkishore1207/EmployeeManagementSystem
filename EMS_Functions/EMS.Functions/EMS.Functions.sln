@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.Functions", "EMS.Functi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.BusinessLogics", "..\EMS.BusinessLogics\EMS.BusinessLogics.csproj", "{273D14DC-E435-47C7-8D40-8734526AC4E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.DataAccessLayer", "..\EMS.DataAccessLayer\EMS.DataAccessLayer.csproj", "{60816EF3-77BB-4EEC-AD7E-D6ED92FEB2A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.DataAccessLayer", "..\EMS.DataAccessLayer\EMS.DataAccessLayer.csproj", "{60816EF3-77BB-4EEC-AD7E-D6ED92FEB2A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Utilities", "..\EMS.Utilities\EMS.Utilities.csproj", "{4E67025C-1A19-4316-ADE4-BE4A777C03D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMS.Utilities", "..\EMS.Utilities\EMS.Utilities.csproj", "{4E67025C-1A19-4316-ADE4-BE4A777C03D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServices", "..\AzureServices\AzureServices.csproj", "{FAD0F2FE-5097-46C5-A589-6E3DD6B984E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4E67025C-1A19-4316-ADE4-BE4A777C03D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E67025C-1A19-4316-ADE4-BE4A777C03D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E67025C-1A19-4316-ADE4-BE4A777C03D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD0F2FE-5097-46C5-A589-6E3DD6B984E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD0F2FE-5097-46C5-A589-6E3DD6B984E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD0F2FE-5097-46C5-A589-6E3DD6B984E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD0F2FE-5097-46C5-A589-6E3DD6B984E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

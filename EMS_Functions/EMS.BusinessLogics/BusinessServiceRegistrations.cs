@@ -9,6 +9,7 @@ namespace EMS.BusinessLogics
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IEmailProcessController,EmailProcessController>();
+            services.AddScoped<IPayslipProcessController,PayslipProcessController>();
             return services;
         }
     }

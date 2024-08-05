@@ -11,6 +11,7 @@
 * Newtonsoft.Json
 * Azure.Storage.Blobs
 * Microsoft.AspNetCore.Http
+* Microsoft.Azure.WebJobs
 
 ### Frontend
 * react-router-dom
