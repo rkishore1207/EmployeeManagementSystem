@@ -6,6 +6,7 @@ using DataAccessLayer.Intefaces;
 using DataAccessLayer.Models;
 using System.Net;
 using Utilities.Constants;
+using Utilities.Enums;
 using Utilities.Exceptions;
 
 namespace BusinessLogics.Implementations
@@ -58,6 +59,21 @@ namespace BusinessLogics.Implementations
         {
             var payslipEntities = _mapper.Map<List<PayslipEntity>>(requests);
             await _adminRepository.SavePayslip(payslipEntities);
+        }
+
+        /// <summary>
+        /// Get all the Managers whose levels are more than the current Employee
+        /// </summary>
+        /// <param name="designationId">Current Employee's Designation Reference</param>
+        /// <returns>List of Managers</returns>
+        public async Task<List<Employees>> GetManagersByDesignation(int designationId)
+        {
+            var designations = await _adminRepository.GetDesignations();
+            int currentEmployeeLevel = designations.Where(designation => designation.Id == designationId).FirstOrDefault().Level;
+            if (designationId == (int)Designation.TraineeAssociate)
+                currentEmployeeLevel++;
+            var managers = await _adminRepository.GetManagersByLevel(currentEmployeeLevel);
+            return _mapper.Map<List<Employees>>(managers);
         }
     }
 }

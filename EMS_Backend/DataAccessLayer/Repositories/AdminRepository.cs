@@ -19,9 +19,9 @@ namespace DataAccessLayer.Repositories
         /// Get all the Destinations from the Database
         /// </summary>
         /// <returns>List of designations contains Id, Name, DisplayName</returns>
-        public async Task<List<ConfigEntity>> GetDesignations()
+        public async Task<List<DesignationEntity>> GetDesignations()
         {
-            var designations = await ExecuteStoredProcedureAsync<ConfigEntity>("GetDesignations");
+            var designations = await ExecuteStoredProcedureAsync<DesignationEntity>("GetDesignations");
             return designations;
         }
 
@@ -35,6 +35,18 @@ namespace DataAccessLayer.Repositories
             {
                 await BulkInsert("[data].[Payslip]", table);
             }
+        }
+
+        /// <summary>
+        /// Get the Managers based on the current Employee's level
+        /// </summary>
+        /// <param name="level">Level of current Employee</param>
+        /// <returns>List of Managers</returns>
+        public async Task<List<UserEntity>> GetManagersByLevel(int level)
+        {
+            var spLevel = SpParameter.Create("Level", level, ParameterDirection.Input, SqlDbType.Int);
+            var users = await ExecuteStoredProcedureAsync<UserEntity>("GetManagersByDesignation",spLevel);
+            return users;
         }
     }
 }

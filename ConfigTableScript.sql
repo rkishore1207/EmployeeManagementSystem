@@ -53,4 +53,12 @@ VALUES (1,'Basic','Basic',1),
 (9,'EPFContributions','EPF Contributions',2),
 (10,'ProfessionalTax','Professional Tax',2)
 
+--Update order number into Allowances
+UPDATE [config].[Allowances] SET OrderNumber = 10 WHERE Id = 10
+
 SELECT * FROM [config].[Allowances]
+
+--update levels in Designation table
+UPDATE [config].[Designation] SET Level = 3 WHERE Id = 4
+
+SELECT * FROM [config].[Designation]

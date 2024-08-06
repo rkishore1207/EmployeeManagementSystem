@@ -5,7 +5,8 @@ namespace DataAccessLayer.Intefaces
 {
     public interface IAdminRepository
     {
-        Task<List<ConfigEntity>> GetDesignations();
+        Task<List<DesignationEntity>> GetDesignations();
         Task SavePayslip(List<PayslipEntity> payslips);
+        Task<List<UserEntity>> GetManagersByLevel(int level);
     }
 }

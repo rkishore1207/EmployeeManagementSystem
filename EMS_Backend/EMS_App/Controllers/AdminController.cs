@@ -54,5 +54,18 @@ namespace EMS_App.Controllers
         {
             await _adminProcessController.SavePayslip(requests);
         }
+
+        /// <summary>
+        /// Get all the managers by Current Employee's Designation Id
+        /// </summary>
+        /// <param name="designationId">Current Employee's Designation</param>
+        /// <returns>All the Managers</returns>
+        [HttpGet]
+        [Route("getManagers/{designationId}")]
+        public async Task<ActionResult> GetManagers(int designationId)
+        {
+            var managers = await _adminProcessController.GetManagersByDesignation(designationId);
+            return Ok(managers);
+        }
     }
 }
