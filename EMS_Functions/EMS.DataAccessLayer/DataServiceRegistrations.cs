@@ -11,6 +11,7 @@ namespace EMS.DataAccessLayer
         {
             services.AddScoped<IHelper, Helper>();
             services.AddScoped<IEmailRepository, EmailRepository>();
+            services.AddScoped<IPayslipRepository, PayslipRepository>();
             return services;
         }
     }

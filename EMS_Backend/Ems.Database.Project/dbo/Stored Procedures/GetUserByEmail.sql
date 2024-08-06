@@ -13,6 +13,7 @@ BEGIN
 		   U.LastName,
 		   U.EmployeeID,
 		   U.Email,
+		   U.IsActive,
 		   U.ManagerUID,
 		   CONCAT(M.FirstName,' ',M.LastName) AS ManagerName		
 	FROM [data].[User] U

@@ -21,6 +21,7 @@ BEGIN
 		   U.[Location],
 		   U.MaritalStatus,
 		   U.Age,
+		   U.IsActive,
 		   U.Gender,
 		   U.BloodGroup,
 		   U.EmergencyNumber,
@@ -43,3 +44,6 @@ BEGIN
 	LEFT JOIN [config].[Designation] D ON D.Id = U.DesignationID
 	LEFT JOIN [config].[UserRole] UR ON UR.Id = U.RoleID
 END
+
+
+UPDATE [data].[User] SET RoleID = 1 WHERE UID = '7CA89ABE-FE96-4571-A551-870A578AAB9F'

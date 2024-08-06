@@ -31,15 +31,29 @@ namespace EMS.BusinessLogics.Office
             stylesheet.Fills = new Fills(new Fill(new PatternFill() { ForegroundColor = new ForegroundColor { Rgb = "F2F2F2" }, PatternType = PatternValues.Solid }));
             stylesheet.CellFormats = new CellFormats();
             workbookStyles.Stylesheet = stylesheet;
+
+            AddNewPart();
+            //worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+            //Worksheet worksheet = new Worksheet();
+            //SheetViews sheetViews = new SheetViews();
+            //SheetView sheetView = new SheetView() { ShowGridLines = true, TabSelected = true, ZoomScaleNormal = (UInt32Value)100U, WorkbookViewId = (UInt32Value)0U };
+            //Selection selection = new Selection() { ActiveCell = "A1", SequenceOfReferences = new ListValue<StringValue>() { InnerText = "A1" } };
+            //sheetView.Append(selection);
+            //sheetViews.Append(sheetView);
+            //worksheet.Append(sheetViews);
+            //worksheet.Append(GetColumns());
+            //SheetData sheetData = new SheetData();
+            //worksheet.Append(sheetData);
+            //worksheetPart.Worksheet = worksheet;
         }
 
-        public void AddNewPart()
+        private void AddNewPart()
         {
             worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
             Worksheet worksheet = new Worksheet();
             SheetViews sheetViews = new SheetViews();
-            SheetView sheetView = new SheetView() { ShowGridLines = true, TabSelected = true, ZoomScaleNormal = (UInt32Value)100U, WorkbookViewId = (UInt32Value)0U};
-            Selection selection = new Selection() { ActiveCell = "A1", SequenceOfReferences = new ListValue<StringValue>() { InnerText = "A1"} };
+            SheetView sheetView = new SheetView() { ShowGridLines = true, TabSelected = true, ZoomScaleNormal = (UInt32Value)100U, WorkbookViewId = (UInt32Value)0U };
+            Selection selection = new Selection() { ActiveCell = "A1", SequenceOfReferences = new ListValue<StringValue>() { InnerText = "A1" } };
             sheetView.Append(selection);
             sheetViews.Append(sheetView);
             worksheet.Append(sheetViews);
@@ -95,21 +109,23 @@ namespace EMS.BusinessLogics.Office
         public void WriteAndClose()
         {
             // write and close for WorksheetPart
-            openXmlWriter = OpenXmlWriter.Create(worksheetPart);
-            var ws = worksheetPart.Worksheet;
-            var sheetData = ws.Elements<SheetData>().First();
-            openXmlWriter.WriteStartElement(ws);
-            openXmlWriter.WriteStartElement(sheetData);
-            openXmlWriter.WriteEndElement();//for sheetData
-            openXmlWriter.WriteEndElement();//for worksheet
-            openXmlWriter.Close();
+            using (openXmlWriter = OpenXmlWriter.Create(worksheetPart))
+            {
+                var ws = worksheetPart.Worksheet;
+                var sheetData = ws.Elements<SheetData>().First();
+                openXmlWriter.WriteStartElement(ws);
+                openXmlWriter.WriteStartElement(sheetData);
+                openXmlWriter.WriteEndElement();//for sheetData
+                openXmlWriter.WriteEndElement();//for worksheet
+                openXmlWriter.Close();
 
-            //write and close for WorkbookPart
-            openXmlWriter = OpenXmlWriter.Create(workbookPart);
-            var wb = workbookPart.Workbook;
-            openXmlWriter.WriteStartElement(wb);
-            openXmlWriter.WriteEndElement();//for workbook
-            openXmlWriter.Close();
+                //write and close for WorkbookPart
+                openXmlWriter = OpenXmlWriter.Create(workbookPart);
+                var wb = workbookPart.Workbook;
+                openXmlWriter.WriteStartElement(wb);
+                openXmlWriter.WriteEndElement();//for workbook
+                openXmlWriter.Close();
+            }
         }
 
         public void Close()
