@@ -24,6 +24,7 @@ BEGIN
 		   U.[Location],
 		   U.MaritalStatus,
 		   U.Age,
+		   U.IsActive,
 		   U.Gender,
 		   U.BloodGroup,
 		   U.EmergencyNumber,

@@ -63,9 +63,9 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="dbo\User Defined Types\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="data\Tables\SalaryDetails.sql" />
     <Build Include="data\Tables\User.sql" />
     <Build Include="config\Tables\Allowances.sql" />
     <Build Include="config\Tables\AllowanceType.sql" />
@@ -77,5 +77,14 @@
     <Build Include="dbo\Stored Procedures\AddOrUpdateUser.sql" />
     <Build Include="Security\data.sql" />
     <Build Include="Security\config.sql" />
+    <Build Include="data\Tables\Payslip.sql" />
+    <Build Include="data\Tables\Email.sql" />
+    <Build Include="dbo\Stored Procedures\GetPayslipStructureByDesignation.sql" />
+    <Build Include="dbo\Stored Procedures\GetPayslipByUser.sql" />
+    <Build Include="dbo\Stored Procedures\GetManagersByDesignation.sql" />
+    <Build Include="dbo\Stored Procedures\GetDesignations.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllowanceTypes.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllowances.sql" />
+    <Build Include="dbo\User Defined Types\PayslipTableType.sql" />
   </ItemGroup>
 </Project>
