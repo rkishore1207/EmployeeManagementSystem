@@ -27,7 +27,7 @@ namespace EMS.Functions
             _logger.LogInformation($"C# Queue trigger function processed: {message.MessageText}");
             var messageBody = Encoding.UTF8.GetString(message.Body);
             var payslip = JsonConvert.DeserializeObject<PayslipRequest>(messageBody);
-            await _payslipProcessController.GeneratePayslipExcel(payslip, executionContext);
+            await _payslipProcessController.GeneratePayslipExcel(payslip);
         }
     }
 }

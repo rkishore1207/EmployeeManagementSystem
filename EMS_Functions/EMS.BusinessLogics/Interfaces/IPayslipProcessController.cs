@@ -4,6 +4,7 @@ namespace EMS.BusinessLogics.Interfaces
 {
     public interface IPayslipProcessController
     {
-        Task GeneratePayslipExcel(PayslipRequest payslip, Microsoft.Azure.WebJobs.ExecutionContext executionContext);
+        Task GeneratePayslipExcel(PayslipRequest payslip);
+        //Task GeneratePayslipExcel(PayslipRequest payslip, Microsoft.Azure.WebJobs.ExecutionContext executionContext);
     }
 }
