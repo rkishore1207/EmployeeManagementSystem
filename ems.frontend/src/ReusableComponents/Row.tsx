@@ -12,6 +12,7 @@ const Row = styled.div<RowProps>`
 
     ${
         props => props.type === Constant.StyledComponentTypes.Horizontal && css`
+            flex-direction: row;
             justify-content: center;
         `
     }

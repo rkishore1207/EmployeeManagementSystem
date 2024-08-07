@@ -19,7 +19,7 @@ namespace EMS.Utilities
             if (string.IsNullOrEmpty(value))
                 return value;
             var regex = "[\x00-\x08\x0B\x0C\x0E-\x1F]";
-            string replacedValue = Regex.Replace(value, regex, "", RegexOptions.Compiled);
+            string replacedValue = Regex.Replace(value, regex, string.Empty, RegexOptions.Compiled);
             return replacedValue;
         }
     }

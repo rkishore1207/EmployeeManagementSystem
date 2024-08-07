@@ -1,10 +1,14 @@
 import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './Pages/login/Login';
-import Register from './Pages/register/Register';
 import GlobalStyle from './utils/GlobalStyles';
 import { Toaster } from 'sonner';
 import {PageRoute} from './utils/Routes';
+import { lazy } from 'react';
+
+const Login = lazy(()=>import('./Pages/login/Login'));
+const Register = lazy(()=>import('./Pages/register/Register'));
+const AdminLayout = lazy(()=>import('./Pages/admin/AdminLayout'));
+
 
 const App = () => {
 
@@ -17,6 +21,7 @@ const App = () => {
           <Route index element={<Navigate replace to={PageRoute.Login}/>}/>
           <Route path={PageRoute.Login} element={<Login/>}/>
           <Route path={PageRoute.Register} element={<Register/>}/>
+          <Route path={PageRoute.Admin} element={<AdminLayout/>}/>
         </Routes>
       </BrowserRouter>
     </>
