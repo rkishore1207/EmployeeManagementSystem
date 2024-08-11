@@ -3,6 +3,7 @@ import App from './App.tsx'
 import './index.css'
 import GlobalInterceptor from './utils/GlobalInterceptor.ts'
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 await GlobalInterceptor.init();
 

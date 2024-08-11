@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-interface LogoProps{
-    logoHeight?:any,
-    logoWidth?:any
-}
+import { Image } from "react-bootstrap";
+import styles from './Logo.module.css';
 
-const Logo = ({logoWidth = '80%', logoHeight = '100%'}:LogoProps) => {
+const Logo = () => {
     return (
-        <img src="images/logo.png" width={logoWidth} height={logoHeight} alt="Logo"/>
+        <div className={styles.logoContainer}>
+            <Image fluid src="images/logo.png" alt="EMS-Logo" width={200}/>
+        </div>
     );
 };
 

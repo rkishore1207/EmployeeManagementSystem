@@ -1,0 +1,27 @@
+.sideBarContainer{
+    background-color: var(--color-white-head-side);
+    padding:2rem 0;
+}
+
+.sideBarContainer:hover{
+    width: 200%;
+    z-index: 1;
+}
+
+.sideBarItem{
+    padding:1.5rem;
+}
+
+.sideBarItem:hover{
+    background-color: #F5EDED;
+}
+
+.sideBarText{
+    display: none;
+}
+
+.sideBarText:hover{
+    font-size: medium;
+}
+
+

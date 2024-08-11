@@ -1,0 +1,6 @@
+
+.adminContentContainer{
+    display: grid;
+    grid-template-columns: 6% auto;
+    height: 90.25vh;
+}

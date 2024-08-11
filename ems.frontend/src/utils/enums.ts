@@ -11,3 +11,9 @@ export enum CustomException{
     NoUsersRegistered = 1003,
     InValidEmail = 1004
 }
+
+export enum AdminRightPanelActive{
+    Home,
+    Finance,
+    Summary
+}
