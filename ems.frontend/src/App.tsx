@@ -7,7 +7,7 @@ import { lazy } from 'react';
 
 const Login = lazy(()=>import('./Pages/login/Login'));
 const Register = lazy(()=>import('./Pages/register/Register'));
-const AdminLayout = lazy(()=>import('./Pages/admin/AdminLayout'));
+const AdminLayout = lazy(()=>import('./Pages/admin/AdminLayout/AdminLayout'));
 
 
 const App = () => {

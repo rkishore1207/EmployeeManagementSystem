@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     --color-blue-links: #81aaeb;
     --color-white-40: #f1f6f7;
     --color-white-50: #FFFFFF;
+    --color-white-head-side: #FCF8F3;
     --color-black-0: #00334E;
 }
 
@@ -24,8 +25,18 @@ html{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-body{
+body,html{
     background-color: #E8E8E8;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    /* overflow: hidden; */
+}
+
+.container-style{
+    margin: 0;
+    padding: 0;
 }
 `
 

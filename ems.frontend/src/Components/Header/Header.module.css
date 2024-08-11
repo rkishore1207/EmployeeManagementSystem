@@ -1,0 +1,8 @@
+
+
+.headerContainer{
+    background-color: var(--color-white-head-side);
+    height: 5rem;
+    justify-content: space-between;
+    padding:0 1.5rem;
+}

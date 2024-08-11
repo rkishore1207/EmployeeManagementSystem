@@ -19,6 +19,7 @@
 * axios
 * sonner (toaster)
 * react-dropzone
+* npm install react-bootstrap bootstrap
 
 
 ## WorkBook Open XML
