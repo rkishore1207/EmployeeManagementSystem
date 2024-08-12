@@ -13,15 +13,12 @@
 }
 
 .sideBarItem:hover{
+    cursor: pointer;
     background-color: #F5EDED;
 }
 
-.sideBarText{
-    display: none;
-}
-
-.sideBarText:hover{
-    font-size: medium;
+.sideBarItem > p{
+    margin: 1rem 0 0 1.5rem;
 }
 
 
