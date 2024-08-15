@@ -24,7 +24,7 @@ namespace EMS_App.Controllers
         /// </summary>        
         /// <returns>List of Unapproved employees</returns>
         [HttpGet]
-        [Route("employees")]
+        [Route("unApprovedEmployees")]
         public async Task<ActionResult> GetEmployees()
         {
             var employees = await _adminProcessController.GetUnApprovedEmployees();
