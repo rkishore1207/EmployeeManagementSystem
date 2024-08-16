@@ -10,6 +10,8 @@ import Loader from './Components/Spinner/Loader';
 const Login = lazy(()=>import('./Pages/login/Login'));
 const Register = lazy(()=>import('./Pages/register/Register'));
 const AdminLayout = lazy(()=>import('./Pages/admin/AdminLayout/AdminLayout'));
+const AdminHome = lazy(()=>import('./Pages/admin/AdminHome/AdminHome'));
+
 
 
 const App = () => {
@@ -27,7 +29,9 @@ const App = () => {
                 <Route index element={<Navigate replace to={PageRoute.Login}/>}/>
                 <Route path={PageRoute.Login} element={<Login/>}/>
                 <Route path={PageRoute.Register} element={<Register/>}/>
-                <Route path={PageRoute.Admin} element={<AdminLayout/>}/>
+                <Route path={PageRoute.Admin} element={<AdminLayout/>}>
+                  <Route path={PageRoute.AdminHome} element={<AdminHome/>}/>
+                </Route>
               </Routes>
             </Suspense>
           </BrowserRouter>
