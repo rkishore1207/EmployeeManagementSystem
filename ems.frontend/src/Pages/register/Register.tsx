@@ -2,7 +2,7 @@
 import { useCallback, useState } from "react";
 import RegisterInput from "../../ReusableComponents/RegisterInput";
 import Row from "../../ReusableComponents/Row";
-import { UserRegister } from "../../models/user/User";
+import { User } from "../../models/user/User";
 import Button from "../../ReusableComponents/Button";
 import adminService from "../../services/adminService";
 import { toast } from "sonner";
@@ -12,7 +12,7 @@ import ValidationText from "../../ReusableComponents/ValidationText";
 
 const Register = () => {
 
-    const [user,setUser] = useState<UserRegister>({
+    const [user,setUser] = useState<User>({
         firstName:'',
         lastName:'',
         employeeID:'',

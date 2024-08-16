@@ -1,6 +1,6 @@
 
 import Constant from "../utils/Constant";
-import { UserLogin, UserRegister } from "../models/user/User";
+import { UserLogin, User } from "../models/user/User";
 import axios from "axios";
 
 class adminService{
@@ -10,12 +10,18 @@ class adminService{
         return employees.data;
     }
 
+    async getUnApprovedEmployees(){
+        const employees = await axios.get(`${Constant.apiUrls.BASE_URL}${Constant.apiUrls.admin.GetUnApprovedEmployees}`);
+        return employees.data;
+    }
+
     async login(loginRequest:UserLogin){
+        console.log("login");
         const response = await axios.post(`${Constant.apiUrls.BASE_URL}${Constant.apiUrls.login}`,loginRequest);
         return response.data;
     }
 
-    async register(registerRequest:UserRegister){
+    async register(registerRequest:User){
         const response = await axios.post(`${Constant.apiUrls.BASE_URL}${Constant.apiUrls.register}`,registerRequest);
         return response.data;
     }

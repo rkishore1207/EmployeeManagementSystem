@@ -10,7 +10,7 @@ const AdminLayout = () => {
             <Header/>
             <div className={styles.adminContentContainer}>
                 <SideBar/>
-                <AdminRightPanel activeTab=""/>
+                <AdminRightPanel/>
             </div>
         </Container>
     );

@@ -3,7 +3,9 @@ export interface UserLogin{
     password:string
 }
 
-export interface UserRegister{
+export interface User{
+    uid?:string,
+    managerUID?:string,
     firstName:string,
     lastName:string,
     employeeID:string,
@@ -11,7 +13,11 @@ export interface UserRegister{
     confirmPassword:string,
     address:string,
     phoneNumber:string,
-    email:string,
+    email?:string,
+    userRole?:string,
+    managerName?:string,
+    designation?:string,
+    isActive?:boolean,
     dateOfBirth:Date,
     dateOfJoin:Date,
     location:string,
@@ -22,5 +28,11 @@ export interface UserRegister{
     about:string,
     school:string,
     college:string,
-    previouCompany:string
+    previouCompany?:string,
+    privilegeLeave?:number,
+    wellnessLeave?:number,
+    optionalLeave?:number,
+    compOff?:number,
+    lossOfPay?:number,
+    earnedLeave?:number
 }
