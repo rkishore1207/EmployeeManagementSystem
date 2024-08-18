@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import styles from './AdminRightPanel.module.css';
 
 
@@ -6,9 +7,7 @@ const AdminRightPanel = () => {
 
     return (
         <div className={styles.rightPanelContainer}>
-            {/* {
-                activeTab === AdminRightPanelActive.Home.toString() && <></>
-            } */}
+            <Outlet/>
         </div>
     );
 };

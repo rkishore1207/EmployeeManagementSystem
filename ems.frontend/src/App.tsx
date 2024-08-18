@@ -16,7 +16,14 @@ const AdminHome = lazy(()=>import('./Pages/admin/AdminHome/AdminHome'));
 
 const App = () => {
 
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions:{
+      queries : {
+        // staleTime: 60*1000,
+        staleTime:0
+      }
+    }
+  });
 
   return (
     <>

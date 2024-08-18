@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosError } from "axios";
-import { HttpStatusCodes } from "./enums";
+import { toast } from "sonner";
 
 
 class GlobalInterceptor{
@@ -8,7 +8,8 @@ class GlobalInterceptor{
     public async init(){
         axios.interceptors.request.use((request)=>{
             request.headers["Accept"] =  "text/plain";
-            request.headers.Authorization = `Bearer ${sessionStorage.getItem("token")}`;
+            const user = JSON.parse(sessionStorage.getItem("user") || '');
+            request.headers.Authorization = `Bearer ${user.token}`;
             console.log(request);
             return request;
         });
@@ -17,15 +18,18 @@ class GlobalInterceptor{
             console.log(response);
             return response;
         },async (error:AxiosError)=>{
+            console.log(error);
             await this.handleResponseError(error);
         })
     }
 
     private handleResponseError = async (error:AxiosError) : Promise<any> => {
-        if(error.response?.status === HttpStatusCodes.UnAuthorized)
-        {
-            return Promise.reject(error);
-        }
+        const errorMessage:any = error.response?.data;
+        // if(error.response?.status === HttpStatusCodes.UnAuthorized)
+        //     toast.error(errorMessage);
+        // else if(error.response?.status === HttpStatusCodes.InternalServerError)
+        //     toast.error(errorMessage)
+        toast.error(errorMessage.Message);
         return Promise.reject(error);
     }
 
