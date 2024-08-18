@@ -36,3 +36,13 @@ export interface User{
     lossOfPay?:number,
     earnedLeave?:number
 }
+
+export interface AdminEmployeeItem{
+    image:string,
+    firstName:string,
+    lastName:string,
+    employeeId:string,
+    dateOfJoin:Date,
+    designation:string,
+    manager:string
+}

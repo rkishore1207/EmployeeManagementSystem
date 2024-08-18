@@ -2,12 +2,14 @@
 using BusinessLogics.Interfaces;
 using BusinessLogics.Models.RequestModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS_App.Controllers
 {
     [Route("api/admin")]
     [ApiController]
+    [EnableCors("ReactCORS")]
     [TypeFilter(typeof(AuthorizationFilter))]
     [Authorize(Roles = "Admin")]
     public class AdminController : ControllerBase

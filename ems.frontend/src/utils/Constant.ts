@@ -14,8 +14,12 @@ const Constant = {
         uploadImage:"/user/uploadImage",
         admin:{
             GetEmployees:"",
-            GetUnApprovedEmployees:"admin/unApprovedEmployees"
+            GetUnApprovedEmployees:"/admin/unApprovedEmployees"
         }
+    },
+    admin:{
+        approvedEmployee:"approvedemployee",
+        unApprovedEmployee:"unapprovedemployee"
     }
 }
 

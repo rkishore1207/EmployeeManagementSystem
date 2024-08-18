@@ -5,12 +5,12 @@ import { User } from "../../../models/user/User";
 import Loader from "../../../Components/Spinner/Loader";
 
 const AdminHome = () => {
-    console.log("adminHome");
+
     const handleEmployees = async () =>{
-        console.log("employees");
-        await adminService.getUnApprovedEmployees().then((response:User) => 
-            console.log(response)
-        ).catch(()=>{});
+        await adminService.getUnApprovedEmployees().then((response:User) => {
+            console.log(response);
+            return response;
+        }).catch(()=>{});
     };
 
     const {isLoading, data:users, error} = useQuery({
@@ -24,7 +24,7 @@ const AdminHome = () => {
 
     return (
         <div>
-            
+            {/* {users?.map()} */}
         </div>
     );
 };
